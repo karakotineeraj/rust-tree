@@ -9,6 +9,10 @@ fn crawl_dir_tree(path: &str, spaces: usize) -> io::Result<()> {
         let is_entry_dir = entry.file_type()?.is_dir();
 
         if let Some(file_name) = filename.to_str() {
+            if file_name == ".git" || file_name == "target" {
+                continue;
+            }
+
             let mut dir_spaces = spaces;
             while dir_spaces > 0 {
                 print!("| ");
